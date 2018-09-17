@@ -1,0 +1,7 @@
+include chi2comb/chi2comb.dll
+include chi2comb/interface.h
+include build_ext.py
+include libpath.py
+include LICENSE.md
+include README.md
+include version.py
