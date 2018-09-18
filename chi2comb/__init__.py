@@ -24,9 +24,9 @@ except Exception as e:
     e.msg = e.msg + msg
     raise e
 
-from ._chi2comb import chi2comb_cdf
+from ._chi2comb import chi2comb_cdf, ChiSquared, Info
 from ._testit import test
 
 __version__ = "0.0.1"
 
-__all__ = ["__version__", "test", "chi2comb_cdf"]
+__all__ = ["__version__", "test", "chi2comb_cdf", "ChiSquared", "Info"]

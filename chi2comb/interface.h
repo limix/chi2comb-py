@@ -1,4 +1,4 @@
-struct chi2comb_chisquares {
+struct chi2comb_chisquareds {
   const double *coefs;
   const double *ncents;
   const int *dofs;
@@ -15,6 +15,6 @@ struct chi2comb_info {
   int ncycles;
 };
 
-int chi2comb_cdf(double q, struct chi2comb_chisquares *chi2s, double gcoef,
+int chi2comb_cdf(double q, struct chi2comb_chisquareds *chi2s, double gcoef,
                  int lim, double abstol, struct chi2comb_info *info,
                  double *result);
