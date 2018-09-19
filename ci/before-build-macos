@@ -1,0 +1,2 @@
+curl https://raw.githubusercontent.com/limix/chi2comb/master/install --output install-chi2comb
+bash install-chi2comb
