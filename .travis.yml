@@ -1,0 +1,61 @@
+python: 3.6
+language: python
+env:
+  global:
+  - PKG_NAME=chi2comb
+  - CIBW_SKIP="cp34-* cp35-* *i686*"
+  - CIBW_BEFORE_BUILD_LINUX=ci/before-build-linux
+  - CIBW_BEFORE_BUILD_MACOS=ci/before-build-macos
+  - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
+matrix:
+  include:
+  - sudo: required
+    services:
+    - docker
+  - os: osx
+    language: generic
+    before_install:
+    - brew update
+    - brew outdated python || brew upgrade python
+    - brew unlink python && brew link python
+    - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    - hash -r
+    - python -m pip install --upgrade pip setuptools wheel
+addons:
+  apt:
+    packages:
+    - libffi-dev
+    - libffi6
+    - cmake
+install:
+- bash <(curl -fsSL https://raw.githubusercontent.com/limix/chi2comb/master/install)
+script:
+- |
+  if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+    sudo mkdir -p /usr/local/man
+    sudo chown -R "${USER}:admin" /usr/local/man
+  fi
+- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
+- python -m pip install cibuildwheel>=0.9.2
+- cibuildwheel --output-dir wheelhouse
+- |
+  if [ "${TRAVIS_TAG:-}" != "" ]; then
+    python -m pip install twine
+    python -m twine upload --skip-existing wheelhouse/*
+  fi
+notifications:
+  email:
+    recipients:
+    - danilo.horta@gmail.com
+    on_success: never
+    on_failure: always
+deploy:
+  provider: pypi
+  user: dhorta
+  password:
+    secure: gn/qv7DCtNeCo8V9Sr6L7Dg5O749cCCh4FCKnqunNVJNgrqfuiGYYG8aZXZZeZrvZGVY6lbNIZYkGQpWU+VBd2n1S8dj8DDS+kOdVnfJDHvbgwx9KoHiKDS8mPqQaujS3x+mzDaOfWV8R2P1EmkzyLWJqGKDVU7LYnTQW8yHZkdyS/h/M2I7nojukWlofb4PsppFOMAYoMN0tu7B/c4TumTp88KnGwsHFDmk7Mz7QluMvjuxVShWpOuMtGQFbicCo/JS1Qprq3x5O+QFLjTMk3ljRUBBz51Ckrs79YY0IgBgsGMtx7ceQTBB6jxGbXEWbums3kRLTAQ7w8JTMcOyk2nl24noaXU7OeGtFmFtLKQs43hvF1LjHRb7ggHdGkhyTS3AtmNWI95fwwFc/aUTT95+2uROlxrgfopQ7q/oxKCcZRsUpYCewx5TN+50ZpEIdxaoj4tqTKHMIo+XjKpgvgEnmLYJrmpYWoi4UNTErQfU879hD6T/x4N3od/buOwdsPAp/wGthEGQZ6p5SsQX1uDvC9un2PaYraE7+82aIB7cApoT/5qcSC9TWM1NzmHHBCOMhByiYMOEBILErQ3UDm2tj5MTfAssM4VORs74Wb9SXMDBhMQXHijby1mdIw6p/uvu1KT1oWOZF1FhEepI5rQHtfiuZo64JJcb2Q8E5Ak=
+  on:
+    tags: true
+    repo: limix/chi2comb-py
+    branch: master
+    python: 3.6
