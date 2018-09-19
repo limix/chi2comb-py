@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from numpy import asarray
+from array import array
 
 from ._ffi import ffi
 from ._ffi.lib import chi2comb_cdf as c_chi2comb_cdf
@@ -39,17 +39,27 @@ class Info(object):
 
 
 def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-9):
+
+    int_type = "i"
+    if array(int_type, [0]).itemsize != ffi.sizeof("int"):
+        int_type = "l"
+        if array(int_type, [0]).itemsize != ffi.sizeof("int"):
+            raise RuntimeError("Could not infer a proper integer representation.")
+
+    if array("d", [0.0]).itemsize != ffi.sizeof("double"):
+        raise RuntimeError("Could not infer a proper double representation.")
+
     q = float(q)
     c_chi2s = ffi.new("struct chi2comb_chisquareds *")
     c_info = ffi.new("struct chi2comb_info *")
 
-    ncents = asarray([float(i.ncent) for i in chi2s])
-    coefs = asarray([float(i.coef) for i in chi2s])
-    dofs = asarray([int(i.dof) for i in chi2s], "int{}".format(ffi.sizeof("int") * 8))
+    ncents = array("d", [float(i.ncent) for i in chi2s])
+    coefs = array("d", [float(i.coef) for i in chi2s])
+    dofs = array(int_type, [int(i.dof) for i in chi2s])
 
-    c_chi2s.ncents = ffi.cast("double *", ncents.ctypes.data)
-    c_chi2s.coefs = ffi.cast("double *", coefs.ctypes.data)
-    c_chi2s.dofs = ffi.cast("int *", dofs.ctypes.data)
+    c_chi2s.ncents = ffi.cast("double *", ncents.buffer_info()[0])
+    c_chi2s.coefs = ffi.cast("double *", coefs.buffer_info()[0])
+    c_chi2s.dofs = ffi.cast("int *", dofs.buffer_info()[0])
     c_chi2s.n = len(chi2s)
 
     result = ffi.new("double *")
