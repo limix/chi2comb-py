@@ -1,15 +1,25 @@
+from __future__ import unicode_literals
+
 from numpy import asarray
+
 from ._ffi import ffi
 from ._ffi.lib import chi2comb_cdf as c_chi2comb_cdf
+from ._six import py2py3_repr
 
 
+@py2py3_repr
 class ChiSquared(object):
     def __init__(self, coef, ncent, dof):
         self.coef = float(coef)
         self.ncent = float(ncent)
         self.dof = int(dof)
 
+    def __repr__(self):
+        msg = "(coef={}, ncent={}, dof={})".format(self.coef, self.ncent, self.dof)
+        return "ChiSquared" + msg
 
+
+@py2py3_repr
 class Info(object):
     def __init__(self):
         self.emag = 0.0
@@ -19,7 +29,14 @@ class Info(object):
         self.truc = 0.0
         self.sd = 0.0
         self.ncycles = 0
-    
+
+    def __repr__(self):
+        msg = "(emag={}, niterms={}, ".format(self.emag, self.niterms)
+        msg += "nints={}, ".format(self.nints)
+        msg += "intv={}, truc={}, sd={}".format(self.intv, self.truc, self.sd)
+        msg += ", ncycles={})".format(self.ncycles)
+        return "Info" + msg
+
 
 def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-9):
     q = float(q)
