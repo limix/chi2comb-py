@@ -18,7 +18,23 @@ pip install chi2comb
 
 ## Usage
 
-TODO.
+```python
+>>> from chi2comb import chi2comb_cdf, ChiSquared
+>>>
+>>> gcoef = 0.0
+>>> ncents = [0, 0, 0]
+>>> q = 1
+>>> dofs = [1, 1, 1]
+>>> coefs = [6, 3, 1]
+>>> chi2s = [ChiSquared(coefs[i], ncents[i], dofs[i]) for i in range(3)]
+>>> result, errno, info = chi2comb_cdf(q, chi2s, gcoef)
+>>> result
+0.054212946675253226
+>>> errno
+0
+>>> info
+Info(emag=0.7623482489861554, niterms=744, nints=2, intv=0.03819311576613404, truc=53.37968999861114, sd=0.0, ncycles=51)
+```
 
 ## Problems
 

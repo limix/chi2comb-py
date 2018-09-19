@@ -38,7 +38,36 @@ class Info(object):
         return "Info" + msg
 
 
-def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-9):
+def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-4):
+    r"""Function distribution of combination of chi-squared distributions.
+
+    Parameters
+    ----------
+    q : float
+        Value point at which distribution function is to be evaluated.
+    chi2s : ChiSquared
+        Chi-squared distributions.
+    gcoef : float
+        Coefficient of the standard Normal distribution.
+    lim : int
+        Maximum number of integration terms.
+    atol : float
+        Absolute error tolerance.
+    
+    Returns
+    -------
+    result : float
+        Estimated c.d.f. evaluated at ``q``.
+    error : int
+        0: completed successfully
+        1: required accuracy not achieved
+        2: round-off error possibly significant
+        3: invalid parameters
+        4: unable to locate integration parameters
+        5: out of memory
+    info : Info
+        Algorithm information.
+    """
 
     int_type = "i"
     if array(int_type, [0]).itemsize != ffi.sizeof("int"):

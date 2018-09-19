@@ -2,13 +2,9 @@
 Combination of chi-squared distributions
 ========================================
 
-Info.
-
 Functions
 ---------
-create_metadata_file  Create variants metadata file.
-read_bgen             Read a given BGEN file.
-test                  Verify this package's integrity.
+chi2comb_cdf  Function distribution of combination of chi-squared distributions.
 
 Documentation can be found at <https://github.com/limix/chi2comb-py>.
 """
