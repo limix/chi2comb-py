@@ -21,7 +21,7 @@ build_script:
     - cd %APPVEYOR_BUILD_FOLDER%
     - ci\set-win-path.bat
     - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
-    - copy "%programfiles%\\chi2comb\\bin\\chi2comb.dll" bgen_reader\
+    - copy "%programfiles%\\chi2comb\\bin\\chi2comb.dll" chi2comb\
     - "%PYTHON%\\python.exe -m cibuildwheel --output-dir wheelhouse"
     - if [%APPVEYOR_REPO_TAG%]==[true] (%PYTHON%\python.exe -m pip install twine && %PYTHON%\python.exe -m twine upload --skip-existing wheelhouse/*)
 
