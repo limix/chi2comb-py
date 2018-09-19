@@ -1,6 +1,6 @@
 # chi2comb
 
-[![Travis](https://img.shields.io/travis/limix/chi2comb-py.svg?style=flat-square&label=linux%20%2F%20macos%20build)](https://travis-ci.org/limix/chi2comb-py) [![AppVeyor](https://img.shields.io/appveyor/ci/Horta/chi2comb-py.svg?style=flat-square&label=windows%20build)](https://ci.appveyor.com/project/Horta/chi2comb-py)
+[![Travis](https://img.shields.io/travis/com/limix/chi2comb-py.svg?style=flat-square&label=linux%20%2F%20macos%20build)](https://travis-ci.com/limix/chi2comb-py) [![AppVeyor](https://img.shields.io/appveyor/ci/Horta/chi2comb-py.svg?style=flat-square&label=windows%20build)](https://ci.appveyor.com/project/Horta/chi2comb-py)
 
 ## Install
 
