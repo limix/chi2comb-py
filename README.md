@@ -4,13 +4,7 @@
 
 ## Install
 
-The recommended way to install this package is via [conda](https://conda.io/docs/)
-
-```bash
-conda install -c conda-forge chi2comb
-```
-
-Alternatively, it can be installed using the pip command
+It can be installed using the pip command
 
 ```bash
 pip install chi2comb
