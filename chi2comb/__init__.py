@@ -13,6 +13,8 @@ from __future__ import absolute_import
 
 try:
     from ._ffi import ffi as _
+
+    assert _ is not None
 except Exception as e:
     msg = "\nIt is likely caused by a broken installation of this package."
     msg += "\nPlease, make sure you have a C compiler and try to uninstall"
@@ -23,6 +25,6 @@ except Exception as e:
 from ._chi2comb import chi2comb_cdf, ChiSquared, Info
 from ._testit import test
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 __all__ = ["__version__", "test", "chi2comb_cdf", "ChiSquared", "Info"]

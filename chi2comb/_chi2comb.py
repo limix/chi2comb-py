@@ -53,7 +53,7 @@ def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-4):
         Maximum number of integration terms.
     atol : float
         Absolute error tolerance.
-    
+
     Returns
     -------
     result : float
