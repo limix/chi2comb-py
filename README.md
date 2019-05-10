@@ -46,8 +46,7 @@ Let us estimate P[Q<1]:
 >>> errno
 0
 >>> info
-Info(emag=0.6430413191446991, niterms=43, nints=1, intv=0.03462571527167856, truc=1
-.4608856930426104, sd=0.0, ncycles=21)
+Info(emag=0.6430413191446991, niterms=43, nints=1, intv=0.03462571527167856, truc=1.4608856930426104, sd=0.0, ncycles=21)
 ```
 
 The estimated value is P[Q<1] ≈ 0.0587.
