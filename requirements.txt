@@ -1,4 +1,5 @@
 cffi>=1.11.5
+pytest-doctestplus>=0.3.0
 pytest-runner>=4.2
 pytest>=3.6.3
 setuptools>=40.0.0
