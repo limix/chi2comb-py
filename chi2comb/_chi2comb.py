@@ -1,14 +1,14 @@
-from __future__ import unicode_literals
-
 from array import array
 
 from ._ffi import ffi
 from ._ffi.lib import chi2comb_cdf as c_chi2comb_cdf
-from ._six import py2py3_repr
 
 
-@py2py3_repr
 class ChiSquared(object):
+    """
+    Noncentral χ² distribution.
+    """
+
     def __init__(self, coef, ncent, dof):
         self.coef = float(coef)
         self.ncent = float(ncent)
@@ -19,8 +19,11 @@ class ChiSquared(object):
         return "ChiSquared" + msg
 
 
-@py2py3_repr
 class Info(object):
+    """
+    Algorithm information.
+    """
+
     def __init__(self):
         self.emag = 0.0
         self.niterms = 0
@@ -39,20 +42,21 @@ class Info(object):
 
 
 def chi2comb_cdf(q, chi2s, gcoef, lim=1000, atol=1e-4):
-    r"""Function distribution of combination of chi-squared distributions.
+    """
+    Function distribution of combination of noncentral chi-squared distributions.
 
     Parameters
     ----------
     q : float
         Value point at which distribution function is to be evaluated.
-    chi2s : ChiSquared
-        Chi-squared distributions.
+    chi2s : list
+        List of ChiSquared objects defining noncentral χ² distributions.
     gcoef : float
         Coefficient of the standard Normal distribution.
-    lim : int
-        Maximum number of integration terms.
-    atol : float
-        Absolute error tolerance.
+    lim : int, optional
+        Maximum number of integration terms. It defaults to ``1000``.
+    atol : float, optional
+        Absolute error tolerance. It defaults to ``1e-4``.
 
     Returns
     -------
