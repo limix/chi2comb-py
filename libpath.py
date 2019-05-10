@@ -9,26 +9,6 @@ is used to retrieve directories for header inclusion.
 In Unix systems, ``/usr/local/lib`` is often used to store libraries.
 In Windows, a library named ``z`` might exist under the name of ``libz``.
 This module is a helper for handling those issues.
-
-Example
--------
-
-    >>> import platform
-    >>> from os.path import join
-    >>> from libpath import Windows, Unix
-    >>>
-    >>> if platform.system() == 'Windows':
-    ...     s = Windows()
-    ...     f = s.get_programfiles()
-    ...     s.add_library_dir(join(f, 'zstd', 'lib'))
-    ...     s.add_include_dir(join(f, 'zstd', 'include'))
-    ...     libs = [s.find_libname('zstd')]
-    ... else:
-    ...     s = Unix()
-    ...     libs = ['zstd']
-    >>>
-    >>> include_dirs = s.get_include_dirs()
-    >>> library_dirs = s.get_library_dirs()
 """
 import os
 import struct
