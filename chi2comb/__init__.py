@@ -40,11 +40,11 @@ Let us estimate P[Q<1]::
     >>> coefs = [6, 3, 1]
     >>> chi2s = [ChiSquared(coefs[i], ncents[i], dofs[i]) for i in range(3)]
     >>> result, errno, info = chi2comb_cdf(q, chi2s, gcoef)
-    >>> result  # doctest: +FLT_CMP
+    >>> result  # doctest: +FLOAT_CMP
     0.050870657088644244
     >>> errno
     0
-    >>> info  # doctest: +FLT_CMP
+    >>> info  # doctest: +FLOAT_CMP
     Info(emag=0.6430413191446991, niterms=43, nints=1, intv=0.03462571527167856, truc=1.4608856930426104, sd=0.0, ncycles=21)
 
 The estimated value is P[Q<1] ≈ 0.0587.
