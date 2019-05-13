@@ -1,5 +1,6 @@
 include chi2comb/chi2comb.dll
 include chi2comb/interface.h
+conftest.py
 include build_ext.py
 include libpath.py
 include LICENSE.md

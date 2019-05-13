@@ -63,6 +63,6 @@ except Exception as e:
 from ._chi2comb import chi2comb_cdf, ChiSquared, Info
 from ._testit import test
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 __all__ = ["__version__", "test", "chi2comb_cdf", "ChiSquared", "Info"]
