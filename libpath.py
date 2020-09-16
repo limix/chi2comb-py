@@ -21,7 +21,7 @@ __version__ = "0.0.1"
 def bits_arch():
     """Determines the number of bits of the Python process.
 
-        Return ``32`` or ``64``.
+    Return ``32`` or ``64``.
     """
     return struct.calcsize("P") * 8
 

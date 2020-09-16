@@ -1,4 +1,4 @@
-from chi2comb import chi2comb_cdf, ChiSquared
+from chi2comb import ChiSquared, chi2comb_cdf
 
 
 def test_chi2comb():

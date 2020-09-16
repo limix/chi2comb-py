@@ -50,19 +50,20 @@ Let us estimate P[Q<1]::
 The estimated value is P[Q<1] ≈ 0.0587.
 """
 try:
-    from ._ffi import ffi as _
+    from ._ffi import ffi
 
-    assert _ is not None
+    del ffi
 except Exception as e:
-    msg = "\nIt is likely caused by a broken installation of this package."
-    msg += "\nPlease, make sure you have a C compiler and try to uninstall"
-    msg += "\nand reinstall the package again."
-    e.msg = e.msg + msg
-    raise e
+    _ffi_err = """
+It is likely caused by a broken installation of this package.
+Please, make sure you have a C compiler and try to uninstall
+and reinstall the package again."""
 
-from ._chi2comb import chi2comb_cdf, ChiSquared, Info
+    raise RuntimeError(str(e) + _ffi_err)
+
+from ._chi2comb import ChiSquared, Info, chi2comb_cdf
 from ._testit import test
 
-__version__ = "0.0.4"
+__version__ = "0.1.0"
 
 __all__ = ["__version__", "test", "chi2comb_cdf", "ChiSquared", "Info"]
